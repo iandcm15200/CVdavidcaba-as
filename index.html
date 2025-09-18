@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ian David Cabañas Morán - CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --medium-dark: #1e1e1e;
+            --light-text: #f5f5f5;
+            --accent: #25D366;
+            --gray: #333333;
+            --light-gray: #444444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--dark-bg);
+            color: var(--light-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .cv-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--darker-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            position: relative;
+        }
+        
+        .left-column {
+            background: var(--medium-dark);
+            padding: 30px;
+            position: relative;
+        }
+        
+        .right-column {
+            padding: 30px;
+            background: var(--dark-bg);
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .profile-img-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: var(--light-text);
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info {
+            margin-bottom: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        
+        .contact-item i {
+            width: 25px;
+            color: var(--accent);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            transition: transform 0.3s;
+            animation: pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .whatsapp-float i {
+            font-size: 30px;
+            color: white;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        .accordion {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .accordion-header {
+            background: var(--gray);
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background: var(--light-gray);
+        }
+        
+        .accordion-content {
+            background: var(--medium-dark);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-content.active {
+            max-height: 500px;
+            padding: 20px;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+        }
+        
+        .job-title {
+            font-weight: bold;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            color: var(--accent);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .date {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .skill {
+            background: var(--gray);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: transform 0.2s, background 0.2s;
+        }
+        
+        .skill:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+        }
+        
+        .tech-category {
+            margin-bottom: 15px;
+        }
+        
+        .tech-category h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-column, .right-column {
+                padding: 20px;
+            }
+            
+            .profile-img-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            
+            .whatsapp-float i {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <div class="left-column">
+            <div class="profile-header">
+                <div class="profile-img-container">
+                    <img src="https://drive.google.com/thumbnail?id=1UkfZlbiQxShbP3DD3YKikv447rHtf_j9&sz=w1000" alt="Ian David Cabañas Morán" class="profile-img">
+                </div>
+                <h1>Ian David Cabañas Morán</h1>
+                <h2>Licenciado en Matemáticas Aplicadas</h2>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-user"></i> Perfil</h3>
+                <p>Soy Ian David Cabañas Morán, tengo 25 años y soy Licenciado en Matemáticas Aplicadas con especialización en análisis de datos y tecnologías de la información. Cuento con experiencia en desarrollo de soluciones tecnológicas y análisis de datos para la toma de decisiones estratégicas.</p>
+            </div>
+            
+            <div class="contact-info">
+                <h3 class="section-title"><i class="fas fa-address-card"></i> Contacto</h3>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>5512875673</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>iandcm152000@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Ciudad de México, México</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-star"></i> Habilidades Técnicas</h3>
+                
+                <div class="tech-category">
+                    <h4>Lenguajes de Programación</h4>
+                    <div class="skills-grid">
+                        <div class="skill">Python</div>
+                        <div class="skill">JavaScript</div>
+                        <div class="skill">SQL</div>
+                        <div class="skill">VBA</div>
+                    </div>
+                </div>
+                
+                <div class="tech-category">
+                    <h4>Análisis de Datos</h4>
+                    <div class="skills-grid">
+                        <div class="skill">Excel</div>
+                        <div class="skill">Google Sheets</div>
+                        <div class="skill">Power BI</div>
+                        <div class="skill">Estadística</div>
+                    </div>
+                </div>
+                
+                <div class="tech-category">
+                    <h4>Herramientas</h4>
+                    <div class="skills-grid">
+                        <div class="skill">Zendesk</div>
+                        <div class="skill">Salesforce</div>
+                        <div class="skill">JIRA</div>
+                        <div class="skill">Git</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="right-column">
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-briefcase"></i> Experiencia Laboral</h3>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Ejecutivo en Atención a Clientes</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="company">Universidad Anáhuac</div>
+                        <div class="date">Julio 2024 - Presente</div>
+                        <ul>
+                            <li>Atención a clientes mediante múltiples canales utilizando Zendesk</li>
+                            <li>Manejo de sistema multi-skill para resolver diversas consultas</li>
+                            <li>Gestión eficiente de tickets y resolución de incidencias</li>
+                            <li>Automatización de procesos con Python y Excel VBA</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Soporte en Asesoría de Dispersiones</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="company">Pluxee México</div>
+                        <div class="date">Fecha de empleo anterior</div>
+                        <ul>
+                            <li>Atención integral a clientes mediante llamadas, correos electrónicos y chats</li>
+                            <li>Asesoría técnica especializada en sistemas de nómina</li>
+                            <li>Uso de Salesforce и JIRA para gestión de incidencias</li>
+                            <li>Análisis de datos con SQL y Python para optimizar procesos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Ejecutivo en Atención al Cliente</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="company">ID Finance</div>
+                        <div class="date">Fecha de empleo anterior</div>
+                        <ul>
+                            <li>Gestión de solicitudes de desbloqueo de plataformas</li>
+                            <li>Manejo de solicitudes de tarjetas y gestión de cancelaciones</li>
+                            <li>Escalamiento de aclaraciones de saldos retenidos</li>
+                            <li>Desarrollo de scripts en Python para automatizar reportes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Formación Académica</h3>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Licenciatura en Matemáticas Aplicadas</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="date">Especialización en Ciencias de Datos</div>
+                        <p>Formación en matemáticas aplicadas con enfoque en soluciones computacionales, análisis de datos y algoritmos. Dominio de Python, JavaScript, SQL y frameworks de análisis de datos.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Bachillerato</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="company">Colegio de Ciencias y Humanidades Plantel Naucalpan (CCH-N)</div>
+                        <div class="date">2015-2018</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title"><i class="fas fa-code"></i> Proyectos Técnicos</h3>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Sistema de Análisis de Datos</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Desarrollo de un sistema en Python para el análisis de datos de clientes, con integración de SQL para gestión de bases de datos y visualización en Power BI.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Automatización de Reportes</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Creación de scripts en VBA y Python para automatizar la generación de reportes financieros y métricas de desempeño en Excel y Google Sheets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5215512875673" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            // Cerrar todos los acordeones primero
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                if (item !== content && item.classList.contains('active')) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                    item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                }
+            });
+            
+            // Alternar el acordeón actual
+            content.classList.toggle('active');
+            
+            // Cambiar el icono
+            if (content.classList.contains('active')) {
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            } else {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            }
+        }
+        
+        // Abrir el primer acordeón por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.accordion-header').click();
+        });
+    </script>
+</body>
+</html>
